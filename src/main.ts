@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { SharedModule } from './shared/shared.module';
 import { ApiConfigService } from './shared/services/api-config.service';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
-import * as morgan from 'morgan';
+import morgan from 'morgan';
 import { swagger } from './swagger';
 
 async function bootstrap(): Promise<INestApplication> {

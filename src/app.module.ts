@@ -5,9 +5,15 @@ import { SharedModule } from './shared/shared.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ApiConfigService } from './shared/services/api-config.service';
 import { DataSource } from 'typeorm';
+import { AuthorModule } from './modules/author/author.module';
+import { BookModule } from './modules/book/book.module';
+import { AuthorBookModule } from './modules/author-book/author-book.module';
 
 @Module({
   imports: [
+    AuthorModule,
+    BookModule,
+    AuthorBookModule,
     SharedModule,
     ConfigModule.forRoot({
       isGlobal: true,

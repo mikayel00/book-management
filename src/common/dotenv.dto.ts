@@ -7,31 +7,31 @@ import { IsNumber } from 'class-validator';
 export class DotenvDto {
   @IsString()
   @IsNotEmpty()
-  PORT: string;
+  PORT!: string;
 
   @IsString()
   @IsNotEmpty()
-  NODE_ENV: string;
+  NODE_ENV!: string;
 
   @IsString()
   @IsNotEmpty()
-  DB_HOST: string;
+  DB_HOST!: string;
 
   @IsNumber()
   @IsNotEmpty()
-  DB_PORT: number;
+  DB_PORT!: number;
 
   @IsString()
   @IsNotEmpty()
-  DB_USERNAME: string;
+  DB_USERNAME!: string;
 
   @IsString()
   @IsNotEmpty()
-  DB_PASSWORD: string;
+  DB_PASSWORD!: string;
 
   @IsString()
   @IsNotEmpty()
-  DB_DATABASE: string;
+  DB_DATABASE!: string;
 }
 
 export const validate = (config: Record<string, unknown>) => {

@@ -8,7 +8,7 @@ export class ApiConfigService {
 
   get appConfig() {
     return {
-      port: this.configService.get<string>('PORT'),
+      port: this.configService.get<string>('PORT')!,
       env: this.configService.get<string>('NODE_ENV'),
     };
   }
@@ -45,6 +45,7 @@ export class ApiConfigService {
       password: this.databaseCredentials.password,
       database: this.databaseCredentials.database,
       migrationsRun: true,
+      synchronize: false,
       logging: true,
     };
   }
