@@ -7,14 +7,12 @@ import { ApiConfigService } from './shared/services/api-config.service';
 import { DataSource } from 'typeorm';
 import { AuthorModule } from './modules/author/author.module';
 import { BookModule } from './modules/book/book.module';
-import { AuthorBookModule } from './modules/author-book/author-book.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
     AuthModule,
-    AuthorBookModule,
     AuthorModule,
     BookModule,
     SharedModule,

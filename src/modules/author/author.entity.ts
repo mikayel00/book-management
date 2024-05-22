@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { AuthorBookEntity } from '../author-book/author-book.entity';
+import { BookEntity } from '../book/book.entity';
 
 @Entity({ name: 'authors' })
 export class AuthorEntity {
@@ -32,9 +32,6 @@ export class AuthorEntity {
   @Column({ type: 'date' })
   birth_date!: Date;
 
-  @OneToMany(
-    () => AuthorBookEntity,
-    (authorBookEntity) => authorBookEntity.author,
-  )
-  authorBooks?: AuthorBookEntity[];
+  @OneToMany(() => BookEntity, (bookEntity) => bookEntity.author)
+  books?: BookEntity[];
 }

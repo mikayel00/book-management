@@ -2,11 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { AuthorBookEntity } from '../author-book/author-book.entity';
+import { AuthorEntity } from '../author/author.entity';
 
 @Entity({ name: 'books' })
 export class BookEntity {
@@ -32,12 +33,10 @@ export class BookEntity {
   @Column({ type: 'date' })
   published_at!: Date;
 
-  @Column({ type: 'date' })
-  author_id!: string;
+  @Column({type: 'int'})
+  author_id!: number;
 
-  @OneToMany(
-    () => AuthorBookEntity,
-    (authorBookEntity) => authorBookEntity.book,
-  )
-  authorBooks?: AuthorBookEntity[];
+  @ManyToOne(() => AuthorEntity, (authorEntity) => authorEntity.books)
+  @JoinColumn({ name: 'author_id' })
+  author?: AuthorEntity;
 }

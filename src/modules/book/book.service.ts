@@ -11,6 +11,9 @@ export class BookService {
   ) {}
 
   async getAll(): Promise<BookEntity[]> {
-    return this.bookRepository.createQueryBuilder().getMany();
+    return await this.bookRepository
+      .createQueryBuilder('book')
+      .leftJoinAndSelect('book.author', 'author')
+      .getMany();
   }
 }
