@@ -32,6 +32,10 @@ export class DotenvDto {
   @IsString()
   @IsNotEmpty()
   DB_DATABASE!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  JWT_SECRET!: string;
 }
 
 export const validate = (config: Record<string, unknown>) => {

@@ -16,9 +16,9 @@ async function bootstrap(): Promise<INestApplication> {
 
   const port = configService.appConfig.port;
 
-  await app.listen(port);
-
   swagger(app);
+
+  await app.listen(port);
 
   console.info(`server running on ${await app.getUrl()}`);
   return app;

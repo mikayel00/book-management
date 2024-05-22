@@ -49,4 +49,10 @@ export class ApiConfigService {
       logging: true,
     };
   }
+
+  get jwtConfig() {
+    return {
+      secret: this.configService.get<string>('JWT_SECRET'),
+    };
+  }
 }
