@@ -1,5 +1,8 @@
 # Book Management API
 
+> Technologies used: 
+> Nest.js, MySQL, TypeORM, Jest, JWT for auth, Swagger for documentation
+
 ### Documentation
 ```
 http://localhost:3000/documentation#/
