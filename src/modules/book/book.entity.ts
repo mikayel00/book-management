@@ -33,10 +33,13 @@ export class BookEntity {
   @Column({ type: 'date' })
   published_at!: Date;
 
-  @Column({type: 'int'})
+  @Column({ type: 'int' })
   author_id!: number;
 
-  @ManyToOne(() => AuthorEntity, (authorEntity) => authorEntity.books)
+  @ManyToOne(() => AuthorEntity, (authorEntity) => authorEntity.books, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   @JoinColumn({ name: 'author_id' })
   author?: AuthorEntity;
 }

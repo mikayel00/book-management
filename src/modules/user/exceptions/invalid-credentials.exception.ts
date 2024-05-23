@@ -1,6 +1,6 @@
-import { ConflictException } from '@nestjs/common';
+import { BadRequestException } from '@nestjs/common';
 
-export class InvalidCredentialsException extends ConflictException {
+export class InvalidCredentialsException extends BadRequestException {
   constructor() {
     super('error.invalidCredentials');
   }
