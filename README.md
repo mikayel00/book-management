@@ -14,6 +14,8 @@ $ cp .env.example .env
 $ yarn install
 ```
 
+### Create database on your local machine with name as in .env
+
 ## Running the app
 
 ```bash
