@@ -10,12 +10,20 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiAcceptedResponse,
+  ApiBearerAuth,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-guard';
 import { BookEntity } from './book.entity';
 import { BookService } from './book.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
+import { BookDto } from './dto/book.dto';
 
 @Controller('books')
 @ApiTags('books')
@@ -26,7 +34,8 @@ export class BookController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @HttpCode(HttpStatus.CREATED)
-  @ApiOkResponse({
+  @ApiCreatedResponse({
+    type: BookDto,
     description: 'Create Book',
   })
   create(@Body() createBookDto: CreateBookDto): Promise<BookEntity> {
@@ -37,6 +46,7 @@ export class BookController {
   @ApiBearerAuth()
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({
+    type: [BookDto],
     description: 'Get all books',
   })
   getAll(): Promise<BookEntity[]> {
@@ -47,7 +57,7 @@ export class BookController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @HttpCode(HttpStatus.ACCEPTED)
-  @ApiOkResponse({
+  @ApiAcceptedResponse({
     description: 'Update book',
   })
   update(
@@ -61,7 +71,7 @@ export class BookController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiOkResponse({
+  @ApiNoContentResponse({
     description: 'Delete book',
   })
   delete(@Param('id') id: number): Promise<void> {

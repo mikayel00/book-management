@@ -10,12 +10,20 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiAcceptedResponse,
+  ApiBearerAuth,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-guard';
 import { AuthorService } from './author.service';
 import { AuthorEntity } from './author.entity';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
+import { AuthorDto } from './dto/author.dto';
 
 @Controller('authors')
 @ApiTags('authors')
@@ -25,7 +33,8 @@ export class AuthorController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @HttpCode(HttpStatus.CREATED)
-  @ApiOkResponse({
+  @ApiCreatedResponse({
+    type: AuthorDto,
     description: 'Create Author',
   })
   create(@Body() createAuthorDto: CreateAuthorDto): Promise<AuthorEntity> {
@@ -37,6 +46,7 @@ export class AuthorController {
   @ApiBearerAuth()
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({
+    type: [AuthorDto],
     description: 'Get all authors',
   })
   getAll(): Promise<AuthorEntity[]> {
@@ -47,7 +57,7 @@ export class AuthorController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @HttpCode(HttpStatus.ACCEPTED)
-  @ApiOkResponse({
+  @ApiAcceptedResponse({
     description: 'Update author',
   })
   update(
@@ -61,7 +71,7 @@ export class AuthorController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiOkResponse({
+  @ApiNoContentResponse({
     description: 'Delete author',
   })
   delete(@Param('id') id: number): Promise<void> {

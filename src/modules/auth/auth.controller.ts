@@ -12,6 +12,7 @@ export class AuthController {
   @Post('login')
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({
+    type: TokenDto,
     description: 'Authorize user with email and password',
   })
   login(@Body() authDto: AuthDto): Promise<TokenDto> {
